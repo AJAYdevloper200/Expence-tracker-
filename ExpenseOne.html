@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense-Tracker</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+
+        .align_center {
+            text-align: center;
+        }
+
+        .font_size_Bold {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .margin_bottom {
+            margin-bottom: 10px;
+        }
+
+        .padding {
+            padding: 10px;
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+            /* margin: 2px 0; */
+        }
+
+        body {
+            /* background-color: red; */
+        }
+
+        #main {
+            width: 50%;
+            /* background-color: blue; */
+            margin: auto;
+        }
+
+        #expenseTracker {
+            font-size: 20px;
+            border: 1px solid black;
+            box-shadow: 1px 1px gray;
+            width: 100%;
+            height: 88;
+            display: flex;
+            justify-content: space-around;
+            /* align-items: center ; */
+            /* text-align: center; */
+        }
+
+        .expenseUpdate {
+            height: 100%;
+            width: 156px;
+            /* margin-right:2px ; */
+            /* background-color: red; */
+        }
+
+        .Income {
+            color: green;
+            margin-top: 10px;
+        }
+
+        .Expense {
+            color: red;
+            margin-top: 10px;
+        }
+
+        label {
+            /* margin-top: 10px; */
+            display: block;
+            font-size: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            height: 40px;
+        }
+
+        input::placeholder {
+            font-size: 16px;
+        }
+
+        .button>button {
+            background-color: rgb(65, 170, 189);
+            margin-top: 30px;
+            width: 100%;
+            padding: 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main" class="padding">
+        <h1 class="align_center">Expense Tracker</h1>
+        <p class="font_size_Bold padding">My Balance</p>
+        <span class="font_size_Bold padding margin_bottom">₹</span><span id="Balance"
+            class="font_size_Bold padding margin_bottom">0000</span>
+
+        <div id="expenseTracker" class="margin_bottom">
+            <div class="expenseUpdate padding" id="Add">
+                <span>Income</span>
+                <p class="Income"><span class="Income">₹</span><span id="Income" class="Income">0000</span></p>
+            </div>
+            <!-- <div class="expenseUpdate" id="Add"></div> -->
+            <div class="expenseUpdate padding" id="Add">
+                <span>Expense</span>
+                <p class="Expense"><span class="Expense">₹</span><span id="Expense" class="Expense">0000</span></p>
+            </div>
+        </div>
+        <div class="History padding">
+            <h1>History</h1>
+            <div id="History" class="padding"></div>
+            <hr>
+        </div>
+
+        <div class="Transaction padding">
+            <h1 class="margin_bottom">Add New Transaction</h1>
+            <div class="margin_bottom">
+                <label for="input_text" class="margin_bottom">Text</label>
+                <input id="input_text" type="text" placeholder="Enter Text">
+            </div>
+            <div class="margin_bottom">
+                <label for="input_text" class="margin_bottom">Amount
+                    <p>(negative expense,positive income)</p>
+                </label>
+                <input id="input_number" type="tel" placeholder="Enter Amount...">
+            </div>
+
+            <div class="button">
+                <button onclick="Add_Transaction()">Add Transaction</button>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        const Balance = document.querySelector("#Balance");
+        const Income = document.querySelector("#Income");
+        const Expense = document.querySelector("#Expense");
+        const History = document.querySelector("#History");
+        const input_text = document.querySelector("#input_text");
+        const input_number = document.querySelector("#input_number");
+
+        function Add_Transaction() {
+            if (input_text.value != "" && input_number.value != "") {
+                if (input_number.value[0] == "-") {
+                    Balance.innerText = +Balance.innerText - +input_number.value.slice(1,)
+                    Expense.innerText = +Expense.innerText + +input_number.value.slice(1,)
+                } else {
+                    Balance.innerText = +Balance.innerText + +input_number.value
+                    Income.innerText = +Income.innerText + +input_number.value
+                    History.innerHTML += `<button>${input_text.value}<br>${input_number.value}</button>`
+                }
+            } else {
+                alert("Enter Appropriate values")
+            }
+            input_text.value = ""
+            input_number.value = ""
+        }
+    </script>
+</body>
+
+</html>
