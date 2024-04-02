@@ -1,0 +1,90 @@
+html,body{
+    background-color: rgb(245, 245, 245);
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+ .EX{
+    text-align: center;
+    justify-content: center;
+ }
+
+
+main{
+    width: 30%;
+    font-family: 'Acme', sans-serif;
+    
+    margin: 0 34%;
+}
+h1{
+    font-size: 1.5rem;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+h2{
+    font-size: 1.25rem;
+}
+
+/* Balance */
+.my-balance{
+      text-align: left;
+      font-size: 1.5rem;
+}
+
+
+/* Income - Expense */
+.Finance-tracker{
+    display: flex;
+    justify-content: space-evenly;
+    border: 1px solid black;
+    background-color: white;
+    box-shadow: rgb(179, 179, 179) 1px 1px 10px ;
+    font-weight: bold;
+}
+.income p span{
+    color:rgb(17, 243, 17);
+    font-weight: bold;
+}
+.expense p span{
+    color:red;
+    font-weight: bold;
+}
+
+/* History */
+/* #history{
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+} */
+
+.cancel-entry{
+    visibility: hidden;
+}
+
+
+
+
+/* New Transaction Window */
+.new-transcation-window{
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.new-transcation-window input{
+    width: 90%;
+    font-size: 1.1rem;
+    height: 2rem;
+    padding: 0 1em;
+    margin: 1em 0;
+    border: 1px solid rgb(207, 207, 207);
+}
+
+#submit{
+    width: 90%;
+    background-color: rgb(65, 170, 189);
+    color: aliceblue;
+    text-align: center;
+    padding: 1em 1em;
+    cursor: pointer;
+}
