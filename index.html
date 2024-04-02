@@ -1,175 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Calculator</title>
-      <!-- <link rel="stylesheet" href="style.css"> -->
-      <style>
-         *{
-         padding: 0;
-         margin: 0;
-         box-sizing: border-box;
-         background-color: rgb(81, 93, 93);
-         color: cyan;
-         }
-         .border{
-         /* border: 1px solid black; */
-         }
-         .border_right{
-         /* border-right: 0px !important; */
-         }
-         .border_left{
-         /* border-left: 0px !important; */
-         }
-         .border_top{
-         /* border-top: 0px !important; */
-         }
-         .mainDiv{
-         width: 100%;
-         height: 100vh;
-         }
-         .leftDiv{
-         /* border-right: 1px solid black; */
-         /* border: 0px 0px; */
-         width: 70%;
-         height: 99.90vh;
-         float: left;
-         }
-         .header{
-         padding: 10px;
-         height: 10vh;
-         width: 100%;
-         /* text-align: center; */
-         }
-         .rightDiv{
-         /* border: 1px solid red; */
-         /* border: 0px 0px; */
-         width: 30%;
-         height:99.90vh ;
-         float: left;
-         }
-         h1{
-         color: white;
-         }
-         .display{
-         height: 20vh;
-         width: 100%;
-         }
-         .leftDiv input{
-         font-weight:bold;
-         text-align: right;
-         padding-right: 10px;
-         letter-spacing: 8px;
-         font-size: 30px;
-         border: 0px;
-         outline: 0px;
-         width: 100%;
-         height:9.99vh;
-         background-color: black;
-         color: white;
-         }
-         .leftDiv .buttons button{
-         font-size: 25px;
-         width: 25%;
-         height: 13.90vh;
-         background-color: #636363;
-         }
-         .leftDiv .buttons button:hover{
-         background-color: #858585;
-         color: white !important;
-         }
-         #history{
-         border-left: 0 !important;
-         border: 2px solid green;
-         height:75.70vh ;
-         width: 100%;
-         overflow-y: auto;
-         scrollbar-color:black;
-         }
-         .Historybutton ,.Historybutton button {
-         display: flex;
-         justify-content: center;
-         padding: 20px;
-         /* background-color: gray; */
-         /* vertical-align: center; */
-         /* margin: auto; */
-         /* padding: 10px; */
-         }
-         .Historybutton button,#svg{
-         background-color: black;
-         font-size: 15px;
-         text-shadow: 1px 10px 15px 2px;
-         }
-         .history{
-         padding-right: 20px;
-         border: 1px solid black;
-         /* color: black; */
-         border-left:0px !important ;
-         border-top:0px !important ;
-         width: 100%;
-         height: 20vh;
-         text-align: end;
-         font-size: 40px;
-         }
-         #history >p{
-         padding: 10px;
-         color: white;
-         font-size: 20px;
-         }
-      </style>
-   </head>
-   <body>
-      <div class="mainDiv border">
-         <!-- ==================== -->
-         <div class="leftDiv">
-            <div class="header border border_right border_top">
-               <h1>Calculator</h1>
-            </div>
-            <div class="display border border_right border_top">
-               <div>
-                  <input type="text" readonly id="output">
-               </div>
-               <div>
-                  <input type="text" value="0" id="input">
-               </div>
-            </div>
-            <div class="buttons">
-               <button onclick="Percentage()">%</button><button onclick="clearInput()">C</button><button
-                  onclick="Delete()">DEL</button><button onclick="btnValue('*')">x</button>
-               <button onclick="btnValue('7')">7</button><button onclick="btnValue('8')">8</button><button
-                  onclick="btnValue('9')">9</button><button onclick="btnValue('/')">/</button>
-               <button onclick="btnValue('4')">4</button><button onclick="btnValue('5')">5</button><button
-                  onclick="btnValue('6')">6</button><button onclick="btnValue('+')">+</button>
-               <button onclick="btnValue('1')">1</button><button onclick="btnValue('2')">2</button><button
-                  onclick="btnValue('3')">3</button><button onclick="btnValue('-')">-</button>
-               <button onclick="">H</button><button onclick="btnValue('0')">0</button><button
-                  onclick="btnValue('.')">.</button><button onclick="Result()">=</button>
-            </div>
-         </div>
-         <!-- ==================== -->
-         <div class="rightDiv">
-            <div class="header border border_left border_top">
-               <h1>History</h1>
-            </div>
-            <div id="history">
-               <p>There is no history yet...</p>
-            </div>
-            <div class="Historybutton">
-               <button onclick="clearHistory()">
-                  <svg id="svg" xmlns="http://www.w3.org/2000/svg" width="19" height="19"
-                     fill="red" class="bi bi-trash" viewBox="0 0 16 16">
-                     <path
-                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-                     <path
-                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
-                  </svg>
-                  Clear History
-               </button>
-            </div>
-         </div>
-         <!-- ==================== -->
-      </div>
-<script src="js.js"></script>
-   </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tack.css">
+    <title>Tic-Tac-Toe</title>
+</head>
+<body>
+    <div class="main">
+        <h1 id="winnerMsgDiv">Tic-Tac-Toe</h1>
+        <div class="x-count">X=><span id="count-x"> 0</span></div>
+        <div class="x-count">O=><span id="count-y"> 0</span></div>
+        <div id="mainDiv">
+            <div id="0" class="cell"></div>          
+            <div id="1" class="cell"></div>
+            <div id="2" class="cell"></div>
+            <div id="3" class="cell"></div>
+            <div id="4" class="cell"></div>
+            <div id="5" class="cell"></div>
+            <div id="6" class="cell"></div>
+            <div id="7" class="cell"></div>
+            <div id="8" class="cell"></div>
+        </div>
+        <h2 class="game-status"></h2>
+        <button class="btn-23" onclick="restartGame()">
+            <span class="text" id>Restart Game</span>
+            <span aria-hidden="" class="marquee">Restart</span>
+          </button>
+        <button class="btn-23"  onclick="resetGame()">
+            <span class="text">Reset Game</span>
+            <span aria-hidden="" class="marquee">Reset</span>
+          </button>
+          
+</div>
+    <script src="toi.js"></script>
+</body>
 </html>
+
+
